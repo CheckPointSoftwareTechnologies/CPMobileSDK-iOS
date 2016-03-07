@@ -37,7 +37,7 @@ You can find the full SDK documentation [here](https://rawgit.com/CheckPointSoft
 
 The framework can be used with both Objective–C and Swift projects.
 
-###Perquisites
+###Prerequisites
 
 Please read the <a href="http://secureupdates.checkpoint.com/mobile/Capsule/Check Point Mobile App Wrapping Guide (1.04).pdf" target="_blank">Check Point App Wrapping Guide</a> for information how to configure Capsule Workspace to work with wrapped and SDK–integrated apps.
 
@@ -197,7 +197,7 @@ Disadvantages
 * Requires more understanding of the SDK
 * May require some changes to existing code to accommodate SDK requirements
 
-##Planed SDK Features
+##Planned SDK Features
 
 In the future, the following features are planned:
 
