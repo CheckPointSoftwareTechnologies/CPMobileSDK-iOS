@@ -39,10 +39,16 @@
                 <a href="Classes/CPSecureDocumentInteractionController.html">CPSecureDocumentInteractionController</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CPSecureFetchRequest.html">CPSecureFetchRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/CPSecurePasteboard.html">CPSecurePasteboard</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/CPSecureUserDefaults.html">CPSecureUserDefaults</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a>
               </li>
             </ul>
           </li>
@@ -73,10 +79,18 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/NSManagedObjectContext.html">NSManagedObjectContext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVSs5Int32GVSs20UnsafeMutablePointerGS1_VSs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
+                <a href="Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVs5Int32GSpGSpVs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
               </li>
             </ul>
           </li>
@@ -125,7 +139,7 @@
 </tr>
 <tr>
 <td style="text-align: left"><code>CPMobileSDKEncryptionKeyUnavailableNotification</code></td>
-<td style="text-align: left">Posted when the encryption key becomes unavailable, usually if user has logged out in Capsule Workspace, or some other issue has come up and requires the user’s reauthentication.</td>
+<td style="text-align: left">Posted when the encryption key becomes unavailable, usually if user has logged out in Capsule Workspace, or some other issue has come up and requires the user’s re-authentication.</td>
 </tr>
 <tr>
 <td style="text-align: left"><code>CPMobileSDKDidUnlockApplicationNotification</code></td>
@@ -263,7 +277,7 @@
 <p>Advantages </p>
 
 <ul>
-<li>Quick and easy integration with most of the SDK&rsquo;s features</li>
+<li>Quick and easy integration with most features of the SDK&rsquo;s</li>
 <li>Requires very little changes to existing code</li>
 <li>Should be enough for most projects</li>
 </ul>
@@ -283,8 +297,8 @@
     <p class="aside-title">Swift</p>
     <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
     <span class="c1">// Override point for customization after application launch.</span>
-    <span class="kt">NSNotificationCenter</span><span class="o">.</span><span class="nf">defaultCenter</span><span class="p">()</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="n">mobileSDKEncryptionKeyAvailable</span><span class="p">),</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">CPMobileSDKEncryptionKeyAvailableNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
-    <span class="kt">NSNotificationCenter</span><span class="o">.</span><span class="nf">defaultCenter</span><span class="p">()</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="n">mobileSDKDidUnlockApplication</span><span class="p">),</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">CPMobileSDKDidUnlockApplicationNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="kt">NSNotificationCenter</span><span class="o">.</span><span class="nf">defaultCenter</span><span class="p">()</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="o">.</span><span class="nf">mobileSDKEncryptionKeyAvailable</span><span class="p">(</span><span class="nv">_</span><span class="p">:)),</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">CPMobileSDKEncryptionKeyAvailableNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="kt">NSNotificationCenter</span><span class="o">.</span><span class="nf">defaultCenter</span><span class="p">()</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="o">.</span><span class="nf">mobileSDKDidUnlockApplication</span><span class="p">(</span><span class="nv">_</span><span class="p">:)),</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">CPMobileSDKDidUnlockApplicationNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 
     <span class="kt">CPMobileSDK</span><span class="o">.</span><span class="nf">startSDKWithOptions</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
 
@@ -347,13 +361,81 @@
 <li>Requires more understanding of the SDK</li>
 <li>May require some changes to existing code to accommodate SDK requirements</li>
 </ul>
+<a href='#core_data' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='core_data'>Core Data</h2>
+
+<p>Core Data is an object graph and persistence framework provided by Apple in iOS. CPMobileSDK provides tools to secure attributes of entities, as well as query these secure attributes with specialized fetch requests.</p>
+
+<p>For general Core Data information, see the <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/index.html" target="_blank">Core Data Programming Guide</a>.</p>
+<a href='#securing_attributes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='securing_attributes'>Securing Attributes</h3>
+
+<p>In order to secure Core Data attributes, change the <em>Attribute Type</em> to <em>Transformable</em>, and set the transformer name to <code>CPSecureValueTransformer</code> or a subclass of <code>CPSecureValueTransformer</code>, like so:</p>
+
+<p><img src="DocImages/CoreDataAttributeSetup.png"></p>
+
+<p>Properties set to be transformed with <code>CPSecureValueTransformer</code> and subclasses will be stored securely in Core Data stores.</p>
+
+<p><strong>Note:</strong> When using Xcode&rsquo;s <em>Create NSManagedObject Subclass&hellip;</em> tool, transformable attributes are created as properties of type <code>AnyObject?</code>/<code>id</code>. These properties can safely be changed to have the underlying types of the attributes.</p>
+<div class="language-swift">
+    <p class="aside-title">Swift</p>
+    <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">Event</span> <span class="p">{</span>
+
+    <span class="kd">@NSManaged</span> <span class="k">var</span> <span class="nv">securedProperty</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+    <span class="kd">@NSManaged</span> <span class="k">var</span> <span class="nv">normalProperty</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+
+<span class="p">}</span>
+</code></pre>
+
+</div>
+<div class="language-objc">
+    <p class="aside-title">Objective c</p>
+    <pre class="highlight objective_c"><code><span class="k">@interface</span> <span class="nc">Event</span> <span class="p">(</span><span class="nl">CoreDataProperties</span><span class="p">)</span>
+
+<span class="err">@</span><span class="nc">property</span> <span class="p">(</span><span class="n">nullable</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">securedProperty</span><span class="p">;</span>
+<span class="k">@property</span> <span class="p">(</span><span class="n">nullable</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">retain</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">normalProperty</span><span class="p">;</span>
+
+<span class="k">@end</span>
+</code></pre>
+
+</div>
+
+<p>Accessing secure property values is transparent. <code>item.securedProperty = &quot;A Secret String&quot;</code> will save the string securely in the store.</p>
+<a href='#querying_secure_attributes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='querying_secure_attributes'>Querying Secure Attributes</h3>
+
+<p>Since attributes are securely transformed into encrypted values, executing normal fetch requests will result in an undefined behavior, and will not return correct results. Instead, use <code>CPSecureFetchRequest</code> objects to create secure fetch requests, and execute using <code>NSManagedObject.executeSecureFetchRequest(_:)</code>.</p>
+<div class="language-swift">
+    <p class="aside-title">Swift</p>
+    <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secureFetchRequest</span> <span class="o">=</span> <span class="kt">CPSecureFetchRequest</span><span class="p">(</span><span class="nv">entityName</span><span class="p">:</span> <span class="s">"Entity"</span><span class="p">)</span>
+<span class="n">secureFetchRequest</span><span class="o">.</span><span class="n">predicate</span> <span class="o">=</span> <span class="kt">NSPredicate</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="s">"integerProperty &gt;= 5"</span><span class="p">)</span>
+<span class="n">secureFetchRequest</span><span class="o">.</span><span class="n">securePredicate</span> <span class="o">=</span> <span class="kt">NSPredicate</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="s">"secureStringProperty CONTAINS '7'"</span><span class="p">)</span>
+
+<span class="k">do</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">results</span> <span class="o">=</span> <span class="k">try</span> <span class="n">appDelegate</span><span class="o">.</span><span class="n">managedObjectContext</span><span class="o">.</span><span class="nf">executeSecureFetchRequest</span><span class="p">(</span><span class="n">secureFetchRequest</span><span class="p">)</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Got </span><span class="se">\(</span><span class="n">results</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s"> results"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="k">let</span> <span class="nv">e</span> <span class="k">as</span> <span class="kt">NSError</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"Error fetching: </span><span class="se">\(</span><span class="n">e</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+
+</div>
+<div class="language-objc">
+    <p class="aside-title">Objective c</p>
+    <pre class="highlight objective_c"><code><span class="n">CPSecureFetchRequest</span><span class="o">*</span> <span class="n">secureFetchRequest</span> <span class="o">=</span> <span class="p">[</span><span class="n">CPSecureFetchRequest</span> <span class="nf">fetchRequestWithEntityName</span><span class="p">:</span><span class="s">@"Entity"</span><span class="p">];</span>
+<span class="n">secureFetchRequest</span><span class="p">.</span><span class="n">predicate</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSPredicate</span> <span class="nf">predicateWithFormat</span><span class="p">:</span><span class="s">@"integerProperty &gt;= 5"</span><span class="p">];</span>
+<span class="n">secureFetchRequest</span><span class="p">.</span><span class="n">securePredicate</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSPredicate</span> <span class="nf">predicateWithFormat</span><span class="p">:</span><span class="s">@"secureStringProperty CONTAINS '7'"</span><span class="p">];</span>
+
+<span class="n">NSArray</span><span class="o">*</span> <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">appDelegate</span><span class="p">.</span><span class="n">managedObjectContext</span> <span class="nf">executeSecureFetchRequest</span><span class="p">:</span><span class="n">secureFetchRequest</span> <span class="nf">error</span><span class="p">:</span><span class="nb">NULL</span><span class="p">];</span>
+<span class="n">NSLog</span><span class="p">(</span><span class="s">@"Got %ld results"</span><span class="p">,</span> <span class="n">results</span><span class="p">.</span><span class="n">count</span><span class="p">);</span>
+</code></pre>
+
+</div>
 <a href='#planned_sdk_features' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='planned_sdk_features'>Planned SDK Features</h2>
 
 <p>In the future, the following features are planned:</p>
 
 <ul>
 <li>File encryption</li>
-<li>Drop–in secure Core Data subclasses</li>
 <li>Drop–in secure SQLite</li>
 <li>Project integration using <a href="https://github.com/Carthage/Carthage" target="_blank">Carthage</a></li>
 </ul>

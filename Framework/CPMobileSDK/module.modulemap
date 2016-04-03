@@ -1,0 +1,6 @@
+framework module CPMobileSDK {
+	umbrella header "CPMobileSDK.h"
+	
+	export *
+	module * { export * }
+}

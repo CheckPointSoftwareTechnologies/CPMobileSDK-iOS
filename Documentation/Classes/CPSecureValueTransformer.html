@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CPSecureValueTransformer Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CPSecureValueTransformer" class="dashAnchor"></a>
+    <a title="CPSecureValueTransformer Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a class="header-title" href="../index.html">CPMobileSDK Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CPMobileSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CPSecureValueTransformer Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CPMobileSDK.html">CPMobileSDK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPMobileSDKOptions.html">CPMobileSDKOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureDocumentInteractionController.html">CPSecureDocumentInteractionController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureFetchRequest.html">CPSecureFetchRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecurePasteboard.html">CPSecurePasteboard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureUserDefaults.html">CPSecureUserDefaults</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK41CPMobileSDKDidLockApplicationNotificationSS">CPMobileSDKDidLockApplicationNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK38CPMobileSDKDisableSecurityNotificationSS">CPMobileSDKDisableSecurityNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK45CPMobileSDKEncryptionKeyAvailableNotificationSS">CPMobileSDKEncryptionKeyAvailableNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK47CPMobileSDKEncryptionKeyUnavailableNotificationSS">CPMobileSDKEncryptionKeyUnavailableNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK35CPMobileSDKEncryptionKeyUserInfoKeySS">CPMobileSDKEncryptionKeyUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK18CPMobileSDKVersionSS">CPMobileSDKVersion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSManagedObjectContext.html">NSManagedObjectContext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVs5Int32GSpGSpVs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1 class="h1_class">CPSecureValueTransformer</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CPSecureValueTransformer</span> <span class="p">:</span> <span class="kt">NSValueTransformer</span></code></pre>
+
+                </div>
+              </div>
+            <p>A secure subclass of <code>NSValueTransformer</code>, for use with Core Data models. Instances of <code>CPSecureValueTransformer</code> are used to transform Core Data types to and from encrypted binary data in Core Data stores.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    When subclassing, make sure to call the super implementation of <code>transformedValue(_:)</code> and <code>reverseTransformedValue(_:)</code>.
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC11CPMobileSDK24CPSecureValueTransformer16setEncryptionKeyFGSqCSo6NSData_T_"></a>
+                    <a name="//apple_ref/swift/Method/setEncryptionKey(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC11CPMobileSDK24CPSecureValueTransformer16setEncryptionKeyFGSqCSo6NSData_T_">setEncryptionKey(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the encryption key to use with <code><a href="../Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a></code> instances. Setting the encryption key to <code>nil</code> will cause instances of <code><a href="../Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a></code> to transform values in clear.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">setEncryptionKey</span><span class="p">(</span><span class="nv">encryptionKey</span><span class="p">:</span> <span class="kt">NSData</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>encryptionKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The encryption key to use with <code>CPSecureValueTransformer</code> instances.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://www.checkpoint.com" target="_blank" rel="external">Check Point Software Technologies</a>. All rights reserved.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

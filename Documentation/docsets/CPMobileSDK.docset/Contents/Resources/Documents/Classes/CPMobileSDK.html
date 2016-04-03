@@ -40,10 +40,16 @@
                 <a href="../Classes/CPSecureDocumentInteractionController.html">CPSecureDocumentInteractionController</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/CPSecureFetchRequest.html">CPSecureFetchRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/CPSecurePasteboard.html">CPSecurePasteboard</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/CPSecureUserDefaults.html">CPSecureUserDefaults</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a>
               </li>
             </ul>
           </li>
@@ -74,10 +80,18 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSManagedObjectContext.html">NSManagedObjectContext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVSs5Int32GVSs20UnsafeMutablePointerGS1_VSs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
+                <a href="../Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVs5Int32GSpGSpVs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
               </li>
             </ul>
           </li>
@@ -95,6 +109,37 @@
               </div>
             <p>The main mobile SDK class. Use this class&rsquo; methods to start the mobile SDK, pass URLs to the SDK and obtain the application encryption key.</p>
 
+<p>Before starting the SDK, add observers for at least <code><a href="../Global Variables.html#/s:v11CPMobileSDK45CPMobileSDKEncryptionKeyAvailableNotificationSS">CPMobileSDKEncryptionKeyAvailableNotification</a></code> and <code><a href="../Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a></code>. Start the SDK by calling <code><a href="../Classes/CPMobileSDK.html#/s:ZFC11CPMobileSDK11CPMobileSDK19startSDKWithOptionsFGSqCS_18CPMobileSDKOptions_T_">CPMobileSDK.startSDKWithOptions(_:)</a></code> like so:</p>
+
+<div class="language-swift">
+    <p class="aside-title">Swift</p>
+    <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="c1">// Override point for customization after application launch.</span>
+    <span class="kt">NSNotificationCenter</span><span class="o">.</span><span class="nf">defaultCenter</span><span class="p">()</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="o">.</span><span class="nf">mobileSDKEncryptionKeyAvailable</span><span class="p">(</span><span class="nv">_</span><span class="p">:)),</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">CPMobileSDKEncryptionKeyAvailableNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="kt">NSNotificationCenter</span><span class="o">.</span><span class="nf">defaultCenter</span><span class="p">()</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="o">.</span><span class="nf">mobileSDKDidUnlockApplication</span><span class="p">(</span><span class="nv">_</span><span class="p">:)),</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">CPMobileSDKDidUnlockApplicationNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+    <span class="kt">CPMobileSDK</span><span class="o">.</span><span class="nf">startSDKWithOptions</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="kd">internal</span> <span class="kd">func</span> <span class="nf">mobileSDKEncryptionKeyAvailable</span><span class="p">(</span><span class="nv">note</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">encryptionKey</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">userInfo</span><span class="p">?[</span><span class="kt">CPMobileSDKEncryptionKeyUserInfoKey</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">NSData</span> <span class="p">{</span>
+        <span class="c1">//Use encryption key to start I/O related API.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">internal</span> <span class="kd">func</span> <span class="nf">mobileSDKDidUnlockApplication</span><span class="p">(</span><span class="nv">note</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Present the app's UI here if not already presented.</span>
+<span class="p">}</span>
+</code></pre>
+
+</div>
+
+<p>UI can be presented before the application is unlocked by the SDK, but this may cause unexpected results, such as starting network requests or disk access. It is best to present the UI only once the application is first unlocked. For projects which start their UI in code, this is very simple – move the UI code to the <code><a href="../Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a></code> observer method. For UI loaded from a Storyboard or a NIB/XIB, the simplest solution is to introduce a landing view controller, and present the real UI in the <code><a href="../Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a></code> observer method. The included demo project demonstrates how to achieve this.</p>
+
+<p>Once the application is locked, it is generally safe to operate the UI normally, even if hidden. However, it is advised to close all work and discard the UI once a <code><a href="../Global Variables.html#/s:v11CPMobileSDK47CPMobileSDKEncryptionKeyUnavailableNotificationSS">CPMobileSDKEncryptionKeyUnavailableNotification</a></code> notification is posted.</p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -109,9 +154,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK19startSDKWithOptionsFMS0_FGSqCS_18CPMobileSDKOptions_T_"></a>
+                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK19startSDKWithOptionsFGSqCS_18CPMobileSDKOptions_T_"></a>
                     <a name="//apple_ref/swift/Method/startSDKWithOptions(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK19startSDKWithOptionsFMS0_FGSqCS_18CPMobileSDKOptions_T_">startSDKWithOptions(_:)</a>
+                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK19startSDKWithOptionsFGSqCS_18CPMobileSDKOptions_T_">startSDKWithOptions(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -123,7 +168,7 @@
 
 <div class="aside aside-seealso">
     <p class="aside-title">Seealso</p>
-    <p><code><a href="../Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVSs5Int32GVSs20UnsafeMutablePointerGS1_VSs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a></code></p>
+    <p><code><a href="../Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVs5Int32GSpGSpVs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a></code></p>
 
 </div>
 
@@ -173,9 +218,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFMS0_FTCSo5NSURL7optionsGVSs10DictionarySSPSs9AnyObject___Sb"></a>
+                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFTCSo5NSURL7optionsGVs10DictionarySSPs9AnyObject___Sb"></a>
                     <a name="//apple_ref/swift/Method/handleSDKOpenURL(_:options:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFMS0_FTCSo5NSURL7optionsGVSs10DictionarySSPSs9AnyObject___Sb">handleSDKOpenURL(_:options:)</a>
+                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFTCSo5NSURL7optionsGVs10DictionarySSPs9AnyObject___Sb">handleSDKOpenURL(_:options:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -238,9 +283,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFMS0_FTCSo5NSURL17sourceApplicationSS10annotationPSs9AnyObject__Sb"></a>
+                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFTCSo5NSURL17sourceApplicationSS10annotationPs9AnyObject__Sb"></a>
                     <a name="//apple_ref/swift/Method/handleSDKOpenURL(_:sourceApplication:annotation:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFMS0_FTCSo5NSURL17sourceApplicationSS10annotationPSs9AnyObject__Sb">handleSDKOpenURL(_:sourceApplication:annotation:)</a>
+                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFTCSo5NSURL17sourceApplicationSS10annotationPs9AnyObject__Sb">handleSDKOpenURL(_:sourceApplication:annotation:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -252,7 +297,7 @@
 
 <div class="aside aside-deprecated">
     <p class="aside-title">Deprecated</p>
-    <p>Use <code><a href="../Classes/CPMobileSDK.html#/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFMS0_FTCSo5NSURL7optionsGVSs10DictionarySSPSs9AnyObject___Sb">CPMobileSDK.handleSDKOpenURL(_:options:)</a></code></p>
+    <p>Use <code><a href="../Classes/CPMobileSDK.html#/s:ZFC11CPMobileSDK11CPMobileSDK16handleSDKOpenURLFTCSo5NSURL7optionsGVs10DictionarySSPs9AnyObject___Sb">CPMobileSDK.handleSDKOpenURL(_:options:)</a></code></p>
 
 </div>
 
@@ -333,9 +378,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK13encryptionKeyFMS0_FT_GSqCSo6NSData_"></a>
+                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK13encryptionKeyFT_GSqCSo6NSData_"></a>
                     <a name="//apple_ref/swift/Method/encryptionKey()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK13encryptionKeyFMS0_FT_GSqCSo6NSData_">encryptionKey()</a>
+                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK13encryptionKeyFT_GSqCSo6NSData_">encryptionKey()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -376,9 +421,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK19defaultAppTintColorFMS0_FT_CSo7UIColor"></a>
+                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK19defaultAppTintColorFT_CSo7UIColor"></a>
                     <a name="//apple_ref/swift/Method/defaultAppTintColor()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK19defaultAppTintColorFMS0_FT_CSo7UIColor">defaultAppTintColor()</a>
+                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK19defaultAppTintColorFT_CSo7UIColor">defaultAppTintColor()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -408,9 +453,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK22defaultAccentTintColorFMS0_FT_CSo7UIColor"></a>
+                    <a name="/s:ZFC11CPMobileSDK11CPMobileSDK22defaultAccentTintColorFT_CSo7UIColor"></a>
                     <a name="//apple_ref/swift/Method/defaultAccentTintColor()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK22defaultAccentTintColorFMS0_FT_CSo7UIColor">defaultAccentTintColor()</a>
+                    <a class="token" href="#/s:ZFC11CPMobileSDK11CPMobileSDK22defaultAccentTintColorFT_CSo7UIColor">defaultAccentTintColor()</a>
                     </code>
                   </div>
                   <div class="height-container">

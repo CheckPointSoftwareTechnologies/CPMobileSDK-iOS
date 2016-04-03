@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Extensions  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="Extensions  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a class="header-title" href="index.html">CPMobileSDK Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">CPMobileSDK Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Extensions  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/CPMobileSDK.html">CPMobileSDK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CPMobileSDKOptions.html">CPMobileSDKOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CPSecureDocumentInteractionController.html">CPSecureDocumentInteractionController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CPSecureFetchRequest.html">CPSecureFetchRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CPSecurePasteboard.html">CPSecurePasteboard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CPSecureUserDefaults.html">CPSecureUserDefaults</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v11CPMobileSDK41CPMobileSDKDidLockApplicationNotificationSS">CPMobileSDKDidLockApplicationNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v11CPMobileSDK38CPMobileSDKDisableSecurityNotificationSS">CPMobileSDKDisableSecurityNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v11CPMobileSDK45CPMobileSDKEncryptionKeyAvailableNotificationSS">CPMobileSDKEncryptionKeyAvailableNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v11CPMobileSDK47CPMobileSDKEncryptionKeyUnavailableNotificationSS">CPMobileSDKEncryptionKeyUnavailableNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v11CPMobileSDK35CPMobileSDKEncryptionKeyUserInfoKeySS">CPMobileSDKEncryptionKeyUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v11CPMobileSDK18CPMobileSDKVersionSS">CPMobileSDKVersion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/NSManagedObjectContext.html">NSManagedObjectContext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVs5Int32GSpGSpVs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1 class="h1_class">Extensions</h1>
+            <p>The following extensions are available globally.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:objc(cs)NSManagedObjectContext"></a>
+                    <a name="//apple_ref/swift/Extension/NSManagedObjectContext" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)NSManagedObjectContext">NSManagedObjectContext</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Additions for executing secure fetch requests.</p>
+
+<p>In order to secure Core Data attributes, change the attribute type to transformable, and set the transformer name to <code><a href="Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a></code> or a subclass of <code><a href="Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a></code>.</p>
+
+<p>Properties set to be transformed with <code><a href="Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a></code> and subclasses will be stored securely in Core Data stores.</p>
+
+<p>Since attributes are securely transformed into encrypted values, executing normal fetch requests will result in an undefined behavior, and will not return correct results. Instead, use <code><a href="Classes/CPSecureFetchRequest.html">CPSecureFetchRequest</a></code> objects to create secure fetch requests, and execute using <code>NSManagedObject.executeSecureFetchRequest(_:)</code>.</p>
+
+                        <a href="Extensions/NSManagedObjectContext.html" class="slightly-smaller">See more</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://www.checkpoint.com" target="_blank" rel="external">Check Point Software Technologies</a>. All rights reserved.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

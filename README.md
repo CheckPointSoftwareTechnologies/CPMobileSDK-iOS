@@ -27,7 +27,7 @@ App state transitions are accompanied by corresponding notifications. These noti
 | Notification Name | Description |
 | :--- | :---|
 | `CPMobileSDKEncryptionKeyAvailableNotification` | Posted when the encryption key becomes available, once the user has authenticated with Capsule Workspace. Use the `CPMobileSDKEncryptionKeyUserInfoKey` user info key to obtain the encryption key, or use the `CPMobileSDK.encryptionKey()` method. |
-| `CPMobileSDKEncryptionKeyUnavailableNotification` | Posted when the encryption key becomes unavailable, usually if user has logged out in Capsule Workspace, or some other issue has come up and requires the user’s reauthentication. |
+| `CPMobileSDKEncryptionKeyUnavailableNotification` | Posted when the encryption key becomes unavailable, usually if user has logged out in Capsule Workspace, or some other issue has come up and requires the user’s re-authentication. |
 | `CPMobileSDKDidUnlockApplicationNotification` | Posted when the application is unlocked. |
 | `CPMobileSDKDidLockApplicationNotification` | Posted when the application is locked. |
 
@@ -122,7 +122,7 @@ int main(int argc, char * argv[])
 
 Advantages 
 
-* Quick and easy integration with most of the SDK's features
+* Quick and easy integration with most features of the SDK's
 * Requires very little changes to existing code
 * Should be enough for most projects
 
@@ -140,8 +140,8 @@ Early on, add observers for at least `CPMobileSDKEncryptionKeyAvailableNotificat
 ```swift
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 	// Override point for customization after application launch.
-	NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mobileSDKEncryptionKeyAvailable), name: CPMobileSDKEncryptionKeyAvailableNotification, object: nil)
-	NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mobileSDKDidUnlockApplication), name: CPMobileSDKDidUnlockApplicationNotification, object: nil)
+	NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mobileSDKEncryptionKeyAvailable(_:)), name: CPMobileSDKEncryptionKeyAvailableNotification, object: nil)
+	NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mobileSDKDidUnlockApplication(_:)), name: CPMobileSDKDidUnlockApplicationNotification, object: nil)
 		
 	CPMobileSDK.startSDKWithOptions(nil)
 		
@@ -197,11 +197,73 @@ Disadvantages
 * Requires more understanding of the SDK
 * May require some changes to existing code to accommodate SDK requirements
 
+##Core Data
+
+Core Data is an object graph and persistence framework provided by Apple in iOS. CPMobileSDK provides tools to secure attributes of entities, as well as query these secure attributes with specialized fetch requests.
+
+For general Core Data information, see the <a href="https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/CoreData/index.html" target="_blank">Core Data Programming Guide</a>.
+
+###Securing Attributes
+
+In order to secure Core Data attributes, change the *Attribute Type* to *Transformable*, and set the transformer name to `CPSecureValueTransformer` or a subclass of `CPSecureValueTransformer`, like so:
+
+<img src="DocImages/CoreDataAttributeSetup.png">
+
+Properties set to be transformed with `CPSecureValueTransformer` and subclasses will be stored securely in Core Data stores.
+
+**Note:** When using Xcode's *Create NSManagedObject Subclass...* tool, transformable attributes are created as properties of type `AnyObject?`/`id`. These properties can safely be changed to have the underlying types of the attributes.
+
+```swift
+extension Event {
+
+    @NSManaged var securedProperty: String?
+    @NSManaged var normalProperty: String?
+
+}
+```
+```objc
+@interface Event (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSString *securedProperty;
+@property (nullable, nonatomic, retain) NSString *normalProperty;
+
+@end
+```
+
+Accessing secure property values is transparent. `item.securedProperty = "A Secret String"` will save the string securely in the store.
+
+###Querying Secure Attributes
+
+Since attributes are securely transformed into encrypted values, executing normal fetch requests will result in an undefined behavior, and will not return correct results. Instead, use `CPSecureFetchRequest` objects to create secure fetch requests, and execute using `NSManagedObject.executeSecureFetchRequest(_:)`.
+
+```swift
+let secureFetchRequest = CPSecureFetchRequest(entityName: "Entity")
+secureFetchRequest.predicate = NSPredicate(format: "integerProperty >= 5")
+secureFetchRequest.securePredicate = NSPredicate(format: "secureStringProperty CONTAINS '7'")
+		
+do {
+	let results = try appDelegate.managedObjectContext.executeSecureFetchRequest(secureFetchRequest)
+			
+	print("Got \(results.count) results")
+}
+catch let e as NSError {
+	print("Error fetching: \(e)")
+}
+```
+
+```objc
+CPSecureFetchRequest* secureFetchRequest = [CPSecureFetchRequest fetchRequestWithEntityName:@"Entity"];
+secureFetchRequest.predicate = [NSPredicate predicateWithFormat:@"integerProperty >= 5"];
+secureFetchRequest.securePredicate = [NSPredicate predicateWithFormat:@"secureStringProperty CONTAINS '7'"];
+
+NSArray* results = [self.appDelegate.managedObjectContext executeSecureFetchRequest:secureFetchRequest error:NULL];
+NSLog(@"Got %ld results", results.count);
+```
+
 ##Planned SDK Features
 
 In the future, the following features are planned:
 
 * File encryption
-* Drop–in secure Core Data subclasses
 * Drop–in secure SQLite
 * Project integration using <a href="https://github.com/Carthage/Carthage" target="_blank">Carthage</a>

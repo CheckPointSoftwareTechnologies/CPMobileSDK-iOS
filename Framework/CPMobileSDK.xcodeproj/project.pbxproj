@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7BA93D561C8F02D700CBB963 /* CPSecureFetchRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA93D531C8F02D700CBB963 /* CPSecureFetchRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BA93D571C8F02D700CBB963 /* CPSecureValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA93D541C8F02D700CBB963 /* CPSecureValueTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BA93D581C8F02D700CBB963 /* NSManagedObjectContext+CPSecureCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BA93D551C8F02D700CBB963 /* NSManagedObjectContext+CPSecureCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7BD532441C8C17780066586D /* CPMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD532431C8C17780066586D /* CPMobileSDK.framework */; };
 		7BD532461C8C179B0066586D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD532451C8C179B0066586D /* libz.tbd */; };
 		7BD5324B1C8C180F0066586D /* CPMobileSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 7BD532471C8C180F0066586D /* CPMobileSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7BA93D531C8F02D700CBB963 /* CPSecureFetchRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CPSecureFetchRequest.h; path = CPMobileSDK.framework/Headers/CPSecureFetchRequest.h; sourceTree = "<group>"; };
+		7BA93D541C8F02D700CBB963 /* CPSecureValueTransformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CPSecureValueTransformer.h; path = CPMobileSDK.framework/Headers/CPSecureValueTransformer.h; sourceTree = "<group>"; };
+		7BA93D551C8F02D700CBB963 /* NSManagedObjectContext+CPSecureCoreData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+CPSecureCoreData.h"; path = "CPMobileSDK.framework/Headers/NSManagedObjectContext+CPSecureCoreData.h"; sourceTree = "<group>"; };
+		7BA93D601C8F133400CBB963 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		7BD532381C8C17590066586D /* CPMobileSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CPMobileSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD5323D1C8C17590066586D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BD532431C8C17780066586D /* CPMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CPMobileSDK.framework; path = CPMobileSDK/CPMobileSDK.framework; sourceTree = "<group>"; };
@@ -63,6 +70,10 @@
 				7BD532481C8C180F0066586D /* CPSecureDocumentInteractionController.h */,
 				7BD532491C8C180F0066586D /* CPSecurePasteboard.h */,
 				7BD5324A1C8C180F0066586D /* CPSecureUserDefaults.h */,
+				7BA93D531C8F02D700CBB963 /* CPSecureFetchRequest.h */,
+				7BA93D541C8F02D700CBB963 /* CPSecureValueTransformer.h */,
+				7BA93D551C8F02D700CBB963 /* NSManagedObjectContext+CPSecureCoreData.h */,
+				7BA93D601C8F133400CBB963 /* module.modulemap */,
 				7BD5323D1C8C17590066586D /* Info.plist */,
 			);
 			path = CPMobileSDK;
@@ -88,6 +99,9 @@
 				7BD5324C1C8C180F0066586D /* CPSecureDocumentInteractionController.h in Headers */,
 				7BD5324D1C8C180F0066586D /* CPSecurePasteboard.h in Headers */,
 				7BD5324E1C8C180F0066586D /* CPSecureUserDefaults.h in Headers */,
+				7BA93D561C8F02D700CBB963 /* CPSecureFetchRequest.h in Headers */,
+				7BA93D571C8F02D700CBB963 /* CPSecureValueTransformer.h in Headers */,
+				7BA93D581C8F02D700CBB963 /* NSManagedObjectContext+CPSecureCoreData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,8 +282,12 @@
 				INFOPLIST_FILE = CPMobileSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = CPMobileSDK/module.modulemap;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-all_load";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.checkpoint.CPMobileSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -290,7 +308,11 @@
 				INFOPLIST_FILE = CPMobileSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "-all_load";
+				MODULEMAP_FILE = CPMobileSDK/module.modulemap;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.checkpoint.CPMobileSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

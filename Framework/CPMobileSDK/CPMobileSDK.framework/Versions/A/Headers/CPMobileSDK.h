@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import <CPMobileSDK/CPSecureUserDefaults.h>
 #import <CPMobileSDK/CPSecurePasteboard.h>
 #import <CPMobileSDK/CPSecureDocumentInteractionController.h>
+#import <CPMobileSDK/CPSecureValueTransformer.h>
+#import <CPMobileSDK/CPSecureFetchRequest.h>
+#import <CPMobileSDK/NSManagedObjectContext+CPSecureCoreData.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -91,6 +95,34 @@ int CPMobileSDKApplicationMain(int argc, char *argv[], NSString * __nullable pri
 
 /**
  The main Check Point Mobile SDK class. Use this class' methods to start the mobile SDK, pass URLs to the SDK and obtain the application encryption key.
+ 
+ Before starting the SDK, add observers for at least @c CPMobileSDKEncryptionKeyAvailableNotification and @c CPMobileSDKDidUnlockApplicationNotification. Start the SDK by calling @c CPMobileSDK.startSDKWithOptions(_:) like so:
+ 
+ @code
+ func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+	// Override point for customization after application launch.
+	NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mobileSDKEncryptionKeyAvailable(_:)), name: CPMobileSDKEncryptionKeyAvailableNotification, object: nil)
+	NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mobileSDKDidUnlockApplication(_:)), name: CPMobileSDKDidUnlockApplicationNotification, object: nil)
+ 
+	CPMobileSDK.startSDKWithOptions(nil)
+ 
+	return true
+ }
+ 
+ internal func mobileSDKEncryptionKeyAvailable(note: NSNotification) {
+	if let encryptionKey = note.userInfo?[CPMobileSDKEncryptionKeyUserInfoKey] as? NSData {
+		//Use encryption key to start I/O related API.
+	}
+ }
+ 
+ internal func mobileSDKDidUnlockApplication(note: NSNotification) {
+	//Present the app's UI here if not already presented.
+ }
+ @endcode
+ 
+ UI can be presented before the application is unlocked by the SDK, but this may cause unexpected results, such as starting network requests or disk access. It is best to present the UI only once the application is first unlocked. For projects which start their UI in code, this is very simple – move the UI code to the @c CPMobileSDKDidUnlockApplicationNotification observer method. For UI loaded from a Storyboard or a NIB/XIB, the simplest solution is to introduce a landing view controller, and present the real UI in the @c CPMobileSDKDidUnlockApplicationNotification observer method. The included demo project demonstrates how to achieve this.
+ 
+ Once the application is locked, it is generally safe to operate the UI normally, even if hidden. However, it is advised to close all work and discard the UI once a @c CPMobileSDKEncryptionKeyUnavailableNotification notification is posted.
  */
 @interface CPMobileSDK : NSObject
 

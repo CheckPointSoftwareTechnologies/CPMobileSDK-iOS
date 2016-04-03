@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>NSManagedObjectContext Extension Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Extension/NSManagedObjectContext" class="dashAnchor"></a>
+    <a title="NSManagedObjectContext Extension Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a class="header-title" href="../index.html">CPMobileSDK Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CPMobileSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        NSManagedObjectContext Extension Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/CPMobileSDK.html">CPMobileSDK</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPMobileSDKOptions.html">CPMobileSDKOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureDocumentInteractionController.html">CPSecureDocumentInteractionController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureFetchRequest.html">CPSecureFetchRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecurePasteboard.html">CPSecurePasteboard</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureUserDefaults.html">CPSecureUserDefaults</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK41CPMobileSDKDidLockApplicationNotificationSS">CPMobileSDKDidLockApplicationNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK38CPMobileSDKDisableSecurityNotificationSS">CPMobileSDKDisableSecurityNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK45CPMobileSDKEncryptionKeyAvailableNotificationSS">CPMobileSDKEncryptionKeyAvailableNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK47CPMobileSDKEncryptionKeyUnavailableNotificationSS">CPMobileSDKEncryptionKeyUnavailableNotification</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK35CPMobileSDKEncryptionKeyUserInfoKeySS">CPMobileSDKEncryptionKeyUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global Variables.html#/s:v11CPMobileSDK18CPMobileSDKVersionSS">CPMobileSDKVersion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSManagedObjectContext.html">NSManagedObjectContext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVs5Int32GSpGSpVs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1 class="h1_class">NSManagedObjectContext</h1>
+            <p>Additions for executing secure fetch requests.</p>
+
+<p>In order to secure Core Data attributes, change the attribute type to transformable, and set the transformer name to <code><a href="../Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a></code> or a subclass of <code><a href="../Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a></code>.</p>
+
+<p>Properties set to be transformed with <code><a href="../Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a></code> and subclasses will be stored securely in Core Data stores.</p>
+
+<p>Since attributes are securely transformed into encrypted values, executing normal fetch requests will result in an undefined behavior, and will not return correct results. Instead, use <code><a href="../Classes/CPSecureFetchRequest.html">CPSecureFetchRequest</a></code> objects to create secure fetch requests, and execute using <code>NSManagedObject.executeSecureFetchRequest(_:)</code>.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE11CPMobileSDKCSo22NSManagedObjectContext26countForSecureFetchRequestFTCS_20CPSecureFetchRequest5errorGVs33AutoreleasingUnsafeMutablePointerGSqCSo7NSError___Su"></a>
+                    <a name="//apple_ref/swift/Method/countForSecureFetchRequest(_:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE11CPMobileSDKCSo22NSManagedObjectContext26countForSecureFetchRequestFTCS_20CPSecureFetchRequest5errorGVs33AutoreleasingUnsafeMutablePointerGSqCSo7NSError___Su">countForSecureFetchRequest(_:error:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the number of objects a given secure fetch request would have returned if it had been passed to <code><a href="../Extensions/NSManagedObjectContext.html#/s:FE11CPMobileSDKCSo22NSManagedObjectContext25executeSecureFetchRequestFzCS_20CPSecureFetchRequestGSaPs9AnyObject__">executeSecureFetchRequest(_:)</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">countForSecureFetchRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">CPSecureFetchRequest</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSErrorPointer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A secure fetch request that specifies the search criteria for the fetch.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>error</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If there is a problem executing the fetch, upon return contains an instance of <code>NSError</code> that describes the problem.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The number of objects a given fetch request would have returned if it had been passed to <code><a href="../Extensions/NSManagedObjectContext.html#/s:FE11CPMobileSDKCSo22NSManagedObjectContext25executeSecureFetchRequestFzCS_20CPSecureFetchRequestGSaPs9AnyObject__">executeSecureFetchRequest(_:)</a></code>, or <code>NSNotFound</code> if an error occurs.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE11CPMobileSDKCSo22NSManagedObjectContext25executeSecureFetchRequestFzCS_20CPSecureFetchRequestGSaPs9AnyObject__"></a>
+                    <a name="//apple_ref/swift/Method/executeSecureFetchRequest(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE11CPMobileSDKCSo22NSManagedObjectContext25executeSecureFetchRequestFzCS_20CPSecureFetchRequestGSaPs9AnyObject__">executeSecureFetchRequest(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns an array of objects that meet the criteria specified by a given secure fetch request.</p>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <p>If there is a problem executing the fetch, throws an instance of <code>NSError</code> that describes the problem.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">executeSecureFetchRequest</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="kt">CPSecureFetchRequest</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">AnyObject</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>request</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A secure fetch request that specifies the search criteria for the fetch.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of objects that meet the criteria specified by request fetched from the receiver and from the persistent stores associated with the receiver’s persistent store coordinator. If an error occurs, returns <code>nil</code>. If no objects match the criteria specified by request, returns an empty array.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://www.checkpoint.com" target="_blank" rel="external">Check Point Software Technologies</a>. All rights reserved.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -39,10 +39,16 @@
                 <a href="Classes/CPSecureDocumentInteractionController.html">CPSecureDocumentInteractionController</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/CPSecureFetchRequest.html">CPSecureFetchRequest</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/CPSecurePasteboard.html">CPSecurePasteboard</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/CPSecureUserDefaults.html">CPSecureUserDefaults</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CPSecureValueTransformer.html">CPSecureValueTransformer</a>
               </li>
             </ul>
           </li>
@@ -73,10 +79,18 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/NSManagedObjectContext.html">NSManagedObjectContext</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVSs5Int32GVSs20UnsafeMutablePointerGS1_VSs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
+                <a href="Functions.html#/s:F11CPMobileSDK26CPMobileSDKApplicationMainFTVs5Int32GSpGSpVs4Int8__GSqSS_GSqSS_GSqCS_18CPMobileSDKOptions__S0_">CPMobileSDKApplicationMain(_:_:_:_:_:)</a>
               </li>
             </ul>
           </li>
@@ -106,6 +120,37 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The main mobile SDK class. Use this class&rsquo; methods to start the mobile SDK, pass URLs to the SDK and obtain the application encryption key.</p>
+
+<p>Before starting the SDK, add observers for at least <code><a href="Global Variables.html#/s:v11CPMobileSDK45CPMobileSDKEncryptionKeyAvailableNotificationSS">CPMobileSDKEncryptionKeyAvailableNotification</a></code> and <code><a href="Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a></code>. Start the SDK by calling <code><a href="Classes/CPMobileSDK.html#/s:ZFC11CPMobileSDK11CPMobileSDK19startSDKWithOptionsFGSqCS_18CPMobileSDKOptions_T_">CPMobileSDK.startSDKWithOptions(_:)</a></code> like so:</p>
+
+<div class="language-swift">
+    <p class="aside-title">Swift</p>
+    <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">NSObject</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+    <span class="c1">// Override point for customization after application launch.</span>
+    <span class="kt">NSNotificationCenter</span><span class="o">.</span><span class="nf">defaultCenter</span><span class="p">()</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="o">.</span><span class="nf">mobileSDKEncryptionKeyAvailable</span><span class="p">(</span><span class="nv">_</span><span class="p">:)),</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">CPMobileSDKEncryptionKeyAvailableNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="kt">NSNotificationCenter</span><span class="o">.</span><span class="nf">defaultCenter</span><span class="p">()</span><span class="o">.</span><span class="nf">addObserver</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">selector</span><span class="p">:</span> <span class="err">#</span><span class="nf">selector</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="o">.</span><span class="nf">mobileSDKDidUnlockApplication</span><span class="p">(</span><span class="nv">_</span><span class="p">:)),</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">CPMobileSDKDidUnlockApplicationNotification</span><span class="p">,</span> <span class="nv">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+    <span class="kt">CPMobileSDK</span><span class="o">.</span><span class="nf">startSDKWithOptions</span><span class="p">(</span><span class="kc">nil</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="p">}</span>
+
+<span class="kd">internal</span> <span class="kd">func</span> <span class="nf">mobileSDKEncryptionKeyAvailable</span><span class="p">(</span><span class="nv">note</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="k">let</span> <span class="nv">encryptionKey</span> <span class="o">=</span> <span class="n">note</span><span class="o">.</span><span class="n">userInfo</span><span class="p">?[</span><span class="kt">CPMobileSDKEncryptionKeyUserInfoKey</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">NSData</span> <span class="p">{</span>
+        <span class="c1">//Use encryption key to start I/O related API.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">internal</span> <span class="kd">func</span> <span class="nf">mobileSDKDidUnlockApplication</span><span class="p">(</span><span class="nv">note</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Present the app's UI here if not already presented.</span>
+<span class="p">}</span>
+</code></pre>
+
+</div>
+
+<p>UI can be presented before the application is unlocked by the SDK, but this may cause unexpected results, such as starting network requests or disk access. It is best to present the UI only once the application is first unlocked. For projects which start their UI in code, this is very simple – move the UI code to the <code><a href="Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a></code> observer method. For UI loaded from a Storyboard or a NIB/XIB, the simplest solution is to introduce a landing view controller, and present the real UI in the <code><a href="Global Variables.html#/s:v11CPMobileSDK43CPMobileSDKDidUnlockApplicationNotificationSS">CPMobileSDKDidUnlockApplicationNotification</a></code> observer method. The included demo project demonstrates how to achieve this.</p>
+
+<p>Once the application is locked, it is generally safe to operate the UI normally, even if hidden. However, it is advised to close all work and discard the UI once a <code><a href="Global Variables.html#/s:v11CPMobileSDK47CPMobileSDKEncryptionKeyUnavailableNotificationSS">CPMobileSDKEncryptionKeyUnavailableNotification</a></code> notification is posted.</p>
 
                         <a href="Classes/CPMobileSDK.html" class="slightly-smaller">See more</a>
                       </div>
@@ -187,6 +232,49 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:C11CPMobileSDK20CPSecureFetchRequest"></a>
+                    <a name="//apple_ref/swift/Class/CPSecureFetchRequest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C11CPMobileSDK20CPSecureFetchRequest">CPSecureFetchRequest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A subclass of <code>NSFetchRequest</code> for performing searches with predicates referencing secure properties.</p>
+
+<p>Secure fetch requests contain two predicates; <code>predicate</code> for constraining non-secure properties, and <code>securePredicate</code>, for constraining secure properties.</p>
+
+<div class="language-swift">
+    <p class="aside-title">Swift</p>
+    <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">secureFetchRequest</span> <span class="o">=</span> <span class="kt">CPSecureFetchRequest</span><span class="p">(</span><span class="nv">entityName</span><span class="p">:</span> <span class="s">"Entity"</span><span class="p">)</span>
+<span class="n">secureFetchRequest</span><span class="o">.</span><span class="n">predicate</span> <span class="o">=</span> <span class="kt">NSPredicate</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="s">"integerProperty &gt;= 5"</span><span class="p">)</span>
+<span class="n">secureFetchRequest</span><span class="o">.</span><span class="n">securePredicate</span> <span class="o">=</span> <span class="kt">NSPredicate</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="s">"secureStringProperty CONTAINS '7'"</span><span class="p">)</span>
+</code></pre>
+
+</div>
+
+                        <a href="Classes/CPSecureFetchRequest.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CPSecureFetchRequest</span> <span class="p">:</span> <span class="kt">NSFetchRequest</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:C11CPMobileSDK18CPSecurePasteboard"></a>
                     <a name="//apple_ref/swift/Class/CPSecurePasteboard" class="dashAnchor"></a>
                     <a class="token" href="#/s:C11CPMobileSDK18CPSecurePasteboard">CPSecurePasteboard</a>
@@ -238,6 +326,44 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CPSecureUserDefaults</span> <span class="p">:</span> <span class="kt">NSUserDefaults</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C11CPMobileSDK24CPSecureValueTransformer"></a>
+                    <a name="//apple_ref/swift/Class/CPSecureValueTransformer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C11CPMobileSDK24CPSecureValueTransformer">CPSecureValueTransformer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A secure subclass of <code>NSValueTransformer</code>, for use with Core Data models. Instances of <code>CPSecureValueTransformer</code> are used to transform Core Data types to and from encrypted binary data in Core Data stores.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    When subclassing, make sure to call the super implementation of <code>transformedValue(_:)</code> and <code>reverseTransformedValue(_:)</code>.
+
+</div>
+
+                        <a href="Classes/CPSecureValueTransformer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CPSecureValueTransformer</span> <span class="p">:</span> <span class="kt">NSValueTransformer</span></code></pre>
 
                         </div>
                       </div>

@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mobileSDKEncryptionKeyAvailable), name: CPMobileSDKEncryptionKeyAvailableNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mobileSDKDidUnlockApplication), name: CPMobileSDKDidUnlockApplicationNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(mobileSDKDidUnlockApplication), name: CPMobileSDKDisableSecurityNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mobileSDKEncryptionKeyAvailable(_:)), name: CPMobileSDKEncryptionKeyAvailableNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mobileSDKDidUnlockApplication(_:)), name: CPMobileSDKDidUnlockApplicationNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.mobileSDKDidUnlockApplication(_:)), name: CPMobileSDKDisableSecurityNotification, object: nil)
 		
 		let options = CPMobileSDKOptions()
 		options.allowAppUsageWithoutCapsuleIntegration = true
