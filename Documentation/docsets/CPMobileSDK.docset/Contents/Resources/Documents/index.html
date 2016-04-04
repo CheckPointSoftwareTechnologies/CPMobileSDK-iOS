@@ -159,8 +159,15 @@
 
 <p>Please read the <a href="http://secureupdates.checkpoint.com/mobile/Capsule/Check Point Mobile App Wrapping Guide (1.04).pdf" target="_blank">Check Point App Wrapping Guide</a> for information how to configure Capsule Workspace to work with wrapped and SDK–integrated apps.</p>
 <a href='#xcode_project_integration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='xcode_project_integration'>Xcode Project Integration</h3>
+<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='carthage'>Carthage</h4>
+
+<p>Add <code>github &quot;CheckPointSoftwareTechnologies/CPMobileSDK-iOS&quot;</code> to your Cartfile. Run <code>carthage update</code>.</p>
+
+<p>For more information, see the <a href="https://github.com/Carthage/Carthage" target="_blank">Carthage GitHub project</a>.</p>
+<a href='#manually' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='manually'>Manually</h4>
 
 <p>Drag <code>CPMobileSDK.framework</code> to your project, and add <code>CPMobileSDK.framework</code> to <strong>Embedded Binaries</strong> in your project target&rsquo;s <strong>General</strong> tab. Xcode should sort everything else on its own.</p>
+<a href='#code_integration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='code_integration'>Code Integration</h3>
 
 <p>In your code, import the framework.</p>
 <div class="language-swift">
@@ -231,7 +238,6 @@
 </tbody></table>
 
 <p><img src="DocImages/CPMobileSDKAppID.png"></p>
-<a href='#code_integration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='code_integration'>Code Integration</h3>
 
 <p>Integration can be achieved in two methods. There are demo projects for each.</p>
 <a href='#quick_integration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='quick_integration'>Quick Integration</h4>
@@ -437,7 +443,6 @@
 <ul>
 <li>File encryption</li>
 <li>Drop–in secure SQLite</li>
-<li>Project integration using <a href="https://github.com/Carthage/Carthage" target="_blank">Carthage</a></li>
 </ul>
 
           </section>

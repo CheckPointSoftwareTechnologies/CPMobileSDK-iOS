@@ -43,7 +43,17 @@ Please read the <a href="http://secureupdates.checkpoint.com/mobile/Capsule/Chec
 
 ###Xcode Project Integration
 
+####Carthage
+
+Add `github "CheckPointSoftwareTechnologies/CPMobileSDK-iOS"` to your Cartfile. Run `carthage update`.
+
+For more information, see the <a href="https://github.com/Carthage/Carthage" target="_blank">Carthage GitHub project</a>.
+
+####Manually
+
 Drag `CPMobileSDK.framework` to your project, and add `CPMobileSDK.framework` to **Embedded Binaries** in your project target's **General** tab. Xcode should sort everything else on its own.
+
+###Code Integration
 
 In your code, import the framework.
 
@@ -81,8 +91,6 @@ In your Info.plist file, add a new row, with the following data:
 | CPMobileSDKAppID | String | `$(PRODUCT_BUNDLE_IDENTIFIER)` |
 
 <img src="DocImages/CPMobileSDKAppID.png">
-
-###Code Integration
 
 Integration can be achieved in two methods. There are demo projects for each.
 
@@ -266,4 +274,3 @@ In the future, the following features are planned:
 
 * File encryption
 * Drop–in secure SQLite
-* Project integration using <a href="https://github.com/Carthage/Carthage" target="_blank">Carthage</a>
